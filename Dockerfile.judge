@@ -11,9 +11,9 @@ ENV MODEL_NAME=gemma3:1b
 
 EXPOSE 11434
 
-CMD ollama serve & \
-    sleep 10 && \
-    ollama pull $MODEL_NAME && \
-    wait
+RUN echo '#!/bin/bash\nset -e\nollama serve &\nSERVER_PID=$!\nsleep 15\nollama pull $MODEL_NAME\nwait $SERVER_PID' > /entrypoint.sh && \
+    chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 
 

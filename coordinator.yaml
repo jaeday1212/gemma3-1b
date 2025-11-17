@@ -272,7 +272,7 @@ spec:
       containers:
       - name: orchestrator
         image: sebastein/gorkheavy_script:v1.0
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         stdin: true
         tty: true
         resources:

@@ -182,9 +182,6 @@ spec:
         image: sebastein/ai-project:orchestrator
         stdin: true
         tty: true
-        env:
-        - name: RUNNING_IN_CLUSTER
-          value: "true"
         resources:
           limits:
             memory: "512Mi"

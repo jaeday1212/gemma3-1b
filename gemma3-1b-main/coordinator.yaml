@@ -275,9 +275,6 @@ spec:
         imagePullPolicy: Always
         stdin: true
         tty: true
-        env:
-        - name: RUNNING_IN_CLUSTER
-          value: "true"
         resources:
           requests:
             memory: "256Mi"

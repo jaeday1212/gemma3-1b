@@ -27,6 +27,7 @@ spec:
       containers:
       - name: promptimizer
         image: sebastein/ollama-promptimizer:v1.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11434
         resources:
@@ -75,6 +76,7 @@ spec:
       containers:
       - name: llama
         image: sebastein/ollama-llama:v1.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11434
         resources:
@@ -123,6 +125,7 @@ spec:
       containers:
       - name: qwen
         image: sebastein/ollama-qwen:v1.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11434
         resources:
@@ -171,6 +174,7 @@ spec:
       containers:
       - name: qwen-small
         image: sebastein/ollama-qwen_small:v1.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11434
         resources:
@@ -219,6 +223,7 @@ spec:
       containers:
       - name: judge
         image: sebastein/ollama-judge:v1.0
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 11434
         resources:
@@ -240,8 +245,9 @@ spec:
   - port: 11434
     targetPort: 11434
   type: ClusterIP
+
 ---
-# Orchestrator
+# Orchestrator (Gorkheavy)
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -265,7 +271,8 @@ spec:
                 operator: DoesNotExist
       containers:
       - name: orchestrator
-        image: sebastein/ai-project:orchestrator
+        image: ai-project:gorkheavy_script:v1.0
+        imagePullPolicy: Never
         stdin: true
         tty: true
         resources:

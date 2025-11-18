@@ -41,7 +41,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: promptimizer-service
+  name: promptimizer
 spec:
   selector:
     app: promptimizer
@@ -90,7 +90,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: llama-service
+  name: llama
 spec:
   selector:
     app: llama
@@ -139,7 +139,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: qwen-service
+  name: qwen
 spec:
   selector:
     app: qwen
@@ -153,16 +153,16 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: qwen-small
+  name: qwensmall
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: qwen-small
+      app: qwensmall
   template:
     metadata:
       labels:
-        app: qwen-small
+        app: qwensmall
     spec:
       affinity:
         nodeAffinity:
@@ -172,7 +172,7 @@ spec:
               - key: node-role.kubernetes.io/master
                 operator: DoesNotExist
       containers:
-      - name: qwen-small
+      - name: qwensmall
         image: sebastein/ollama-qwen_small:v1.0
         imagePullPolicy: IfNotPresent
         ports:
@@ -188,10 +188,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: qwen-small-service
+  name: qwensmall
 spec:
   selector:
-    app: qwen-small
+    app: qwensmall
   ports:
   - port: 11434
     targetPort: 11434
@@ -237,7 +237,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: judge-service
+  name: judge
 spec:
   selector:
     app: judge
@@ -272,7 +272,7 @@ spec:
       containers:
       - name: orchestrator
         image: sebastein/gorkheavy_script:v1.0
-        imagePullPolicy: Always
+        imagePullPolicy: Never
         stdin: true
         tty: true
         resources:
